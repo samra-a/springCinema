@@ -28,13 +28,9 @@ public class MovieService {
         return movieRepository.save(newMovie);
     }
 
-    public void deleteMovie(Movie oldMovie){
-        this.movieRepository.delete(oldMovie);
+    public void deleteMovie(int id){
+        this.movieRepository.deleteById(id);
     }
-
-//    public void addMovie(Movie movie){
-//        this.cinema.add(movie);
-//    }
 
     public List<Movie> getAllMovies(){
         return movieRepository.findAll();
