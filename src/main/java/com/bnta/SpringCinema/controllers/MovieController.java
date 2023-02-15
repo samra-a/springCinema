@@ -27,21 +27,22 @@ public class MovieController {
         return new ResponseEntity<>(movie, HttpStatus.OK);
     }
 
+    //GET /movies/{id}
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<Movie> getMovieById (@PathVariable int id){
+        Movie movie = movieService.getMovieById(id);
+        return new ResponseEntity<>(movie, HttpStatus.OK);
+    }
+
 
     //POST /movies
-//    @PostMapping
-//    public ResponseEntity<Movie> addMovie{
-//        Movie movie = movieService.addMovie();
-//        return new ResponseEntity<>(movie, HttpStatus.CREATED);
-//    }
-
-    //Add functionality to update a movie in the database
     @PostMapping
     public ResponseEntity<Movie> createMovie(@RequestBody Movie movie){
         Movie movieToBeSaved = movieService.creatMovie(movie);
         return new ResponseEntity<>(movieToBeSaved, HttpStatus.CREATED);
     }
 
+    //Add functionality to update a movie in the database
     @PutMapping(value = "/{id}")
     public ResponseEntity<Movie> updateMovie(@PathVariable int id, @RequestBody Movie movie){
         movie.setId(id);
@@ -58,15 +59,8 @@ public class MovieController {
         return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
-    //requestbody- deserialses json object and truns it into a ovie object
-    //we can then take that movie and then craetes it
-
-    //GET /movies/{id}
-    @GetMapping(value = "/{id}")
-        public ResponseEntity<Movie> getMovieById (@PathVariable int id){
-            Movie movie = movieService.getMovieById(id);
-            return new ResponseEntity<>(movie, HttpStatus.OK);
-        }
+    //requestbody- deserializes json object and turns it into a movie object
+    //we can then take that movie and then creates it
 
 
     }
